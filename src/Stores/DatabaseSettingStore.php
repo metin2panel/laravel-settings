@@ -197,6 +197,9 @@ class DatabaseSettingStore extends SettingStore
 
         if ($this->extraColumns) {
             foreach ($data as $key => $value) {
+				if(is_array($value) && empty($value))
+					 continue;
+				 
                 $dbData[] = array_merge(
                     $this->extraColumns,
                     [$this->keyColumn => $key, $this->valueColumn => (string) $value]
@@ -204,6 +207,9 @@ class DatabaseSettingStore extends SettingStore
             }
         } else {
             foreach ($data as $key => $value) {
+				if(is_array($value) && empty($value))
+					 continue;
+				 
                 $dbData[] = [$this->keyColumn => $key, $this->valueColumn => (string) $value];
             }
         }
